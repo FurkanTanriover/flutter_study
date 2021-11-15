@@ -25,21 +25,64 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.orange[300],
         ),
         body: Container(
-          color: Colors.white,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: expandedContainer,
+          color: Colors.blue,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CreateRow(),
+              Expanded(child: CreateColumn()),
+            ],
           ),
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             debugPrint("tıklandı");
           },
-          backgroundColor: Colors.green,
-          child: Icon(Icons.account_balance_wallet_outlined,
-              color: Colors.lightGreen),
+          backgroundColor: Colors.yellow.shade100,
+          child:
+              Icon(Icons.account_balance_wallet_outlined, color: Colors.yellow),
         ),
       ),
+    );
+  }
+
+  Container CreateContainer(String harf, Color renk, {double margin = 0}) {
+    return Container(
+      height: 50,
+      width: 50,
+      alignment: Alignment.topLeft,
+      margin: EdgeInsets.only(top: margin),
+      color: renk,
+      child: Text(
+        harf,
+        style: TextStyle(
+          color: Colors.blue,
+          fontSize: 50,
+        ),
+      ),
+    );
+  }
+
+  Row CreateRow() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        CreateContainer("D", Colors.yellow.shade900),
+        CreateContainer("A", Colors.yellow.shade700),
+        CreateContainer("R", Colors.yellow.shade500),
+        CreateContainer("T", Colors.yellow.shade100),
+      ],
+    );
+  }
+
+  Column CreateColumn() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        CreateContainer("İ", Colors.yellow.shade700, margin: 100),
+        CreateContainer("L", Colors.yellow.shade500),
+        CreateContainer("İ", Colors.yellow.shade100),
+      ],
     );
   }
 
@@ -78,25 +121,28 @@ class MyApp extends StatelessWidget {
     ];
   }
 
-  List<Widget> get expandedContainer {
+  List<Widget> get flexibleAndExpandedContainer {
     return <Widget>[
-      Expanded(
-        flex: 1, // biz yazmasakta her expanded da varsayılan olarak bir verilir total genişliği ve ya boyu katsayıyla orantılı olarak bölümlere ayırır
+      Flexible(
+        //sana verdiğim genişlik yükseklik ölçüleri kadar maksimum yayıl ama gerekirse küçül
+        flex:
+            1, // biz yazmasakta her expanded da varsayılan olarak bir verilir total genişliği ve ya boyu katsayıyla orantılı olarak bölümlere ayırır
         child: Container(
           height: 75,
-          width: 75,
+          width: 50,
           color: Colors.amber,
         ),
       ),
-      Expanded(
+      Flexible(
         flex: 2,
         child: Container(
           height: 75,
-          width: 75,
+          width: 50,
           color: Colors.blue,
         ),
       ),
       Expanded(
+        // genişlik yükseklikden bağımsız olarak ekranı dolduracak şekilde büyü ve gerektiğinde küçül
         flex: 3,
         child: Container(
           height: 75,
