@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_temel_widget/grid_view_kullanimi.dart';
 import 'package:flutter_temel_widget/list_view_kullanimi.dart';
+import 'package:flutter_temel_widget/problemExample.dart';
 
 void main() {
   runApp(MyApp());
@@ -29,7 +31,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "MY APP",
-      home: ListViewKullanimi(),
+      home: GridViewKullanimi(),
       builder: EasyLoading.init(),
     );
   }
